@@ -9,17 +9,18 @@ Link del video https://youtu.be/AKuQTcDcCgA
   Funcionalidad:
   Se puede iniciar sesion en caso de estar registrado, de lo contrario se puede registrar, una vez estando dentro en el dashboard, tiene 3 diferentes               -       funcionalidades, como crear nuevo usuario, editar usuarios, eliminar usuarios (CRUD), y una funcionalidad de cerrar sesion.
  <hr>
+ 
  <b> Estado del proyecto:</b> </br> 
-  -TERMINADO.
+  <ul>-TERMINADO.</ul>
  <hr>
 <b> Estado requisito del enterno de desarrollo para la integracion:</b> </br> 
- - Netbeans 12.5
+ <ul>- Netbeans 12.5
  - Java version minimo 8
- - MySql o Xampp
+ - MySql o Xampp</ul>
  <hr>
 <b> Tecnologias utilizadas</b> </br> 
-- Java Swing
+<ul>- Java Swing
 - Xampp (servidor con Mysql)
 - Netbeans
-- Aplicacion de los 4 paradigmas de la POO
+- Aplicacion de los 4 paradigmas de la POO</ul>
   
