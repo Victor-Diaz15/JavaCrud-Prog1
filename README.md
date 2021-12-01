@@ -11,16 +11,16 @@ Link del video https://youtu.be/AKuQTcDcCgA
  <hr>
  
  <b> Estado del proyecto:</b> </br> 
-  <ul>-TERMINADO.</ul>
+ -TERMINADO.
  <hr>
 <b> Estado requisito del enterno de desarrollo para la integracion:</b> </br> 
- <ul>- Netbeans 12.5
- - Java version minimo 8
- - MySql o Xampp</ul>
+ - Netbeans 12.5</br> 
+ - Java version minimo 8</br> 
+ - MySql o Xampp</br> 
  <hr>
 <b> Tecnologias utilizadas</b> </br> 
-<ul>- Java Swing
-- Xampp (servidor con Mysql)
-- Netbeans
-- Aplicacion de los 4 paradigmas de la POO</ul>
+- Java Swing</br> 
+- Xampp (servidor con Mysql)</br> 
+- Netbeans</br> 
+- Aplicacion de los 4 paradigmas de la POO</br> 
   
