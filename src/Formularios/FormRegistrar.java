@@ -176,7 +176,7 @@ public class FormRegistrar extends javax.swing.JFrame {
 
         lblConfirmarPs.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
         lblConfirmarPs.setForeground(new java.awt.Color(255, 255, 255));
-        lblConfirmarPs.setText("Confirmar Contraeña");
+        lblConfirmarPs.setText("Confirmar Contraseña");
 
         btnRegistrar.setBackground(new java.awt.Color(73, 181, 172));
         btnRegistrar.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
@@ -424,32 +424,36 @@ public class FormRegistrar extends javax.swing.JFrame {
 
             //variable para verificar si ya existe ese usuario en la base de datos
             ResultSet existe = validar(mod.getUsuario());
+            ResultSet comprobarUser = validar(id, mod.getUsuario());
 
             //variable contador
-            int contador = 0;
+            int idError = 0;
             //condicionales para verificar cada campo
             if (mod.getNombre().isEmpty()) {
-                contador = 1;
+                idError = 1;
             } else if (mod.getApellido().isEmpty()) {
-                contador = 2;
+                idError = 2;
             } else if (mod.getUsuario().isEmpty()) {
-                contador = 3;
+                idError = 3;
             } else if (mod.getTelefono().isEmpty()) {
-                contador = 4;
+                idError = 4;
             } else if (mod.getCorreo().isEmpty()) {
-                contador = 5;
+                idError = 5;
             } else if (mod.getContraseña().isEmpty()) {
-                contador = 6;
+                idError = 6;
             } else if (!mod.getContraseña().equals(mod.getConfirmPs())) {
-                contador = 7;
+                idError = 7;
             } else if (existe.next()) {
-                contador = 8;
+                idError = 8;
+                if(comprobarUser.next()){
+                    idError = 9;
+                }
             }else if (update) {
-                contador = 9;
-            } 
+                idError = 9;
+            }
 
             //switch para mandar mensaje correspondiente al usuario
-            switch (contador) {
+            switch (idError) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "El campo nombre no esta lleno, debe completarlo");
                     break;
@@ -472,7 +476,7 @@ public class FormRegistrar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "La contraseña no coiciden, debe solucionarlo");
                     break;
                 case 8:
-                     JOptionPane.showMessageDialog(null, "Ese usuario no esta disponible, intente con otro");
+                    JOptionPane.showMessageDialog(null, "Ese usuario no esta disponible, intente con otro");
                     break;
                 case 9:
                     //llamando la funcion actualizar
@@ -482,6 +486,7 @@ public class FormRegistrar extends javax.swing.JFrame {
                     FormRegisterData data = new FormRegisterData();
                     data.setVisible(true);
                     break;
+
                 default:
                     //llamando la funcion insertar nuevo registro
                     insertar(mod.getNombre(), mod.getApellido(), mod.getUsuario(), mod.getTelefono(), mod.getCorreo(), mod.getContraseña());
@@ -560,7 +565,22 @@ public class FormRegistrar extends javax.swing.JFrame {
             //realizando la query
             String select = "SELECT USUARIO FROM USUARIOS "
                     + "WHERE USUARIO = '" + mod.getUsuario() + "'";
-
+            conectar = con.getConexion();
+            st = conectar.createStatement();
+            resultado = st.executeQuery(select);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        return resultado;
+    }
+    //metodo para comprobar si el nombre de usuario pertenece al mismo id
+    public ResultSet validar(int id, String usuario) {
+        //setiando las usuario en mi clase modelo
+        mod.setUsuario(usuario);
+        try {
+            //realizando la query
+            String select = "SELECT USUARIO FROM USUARIOS "
+                    + "WHERE USUARIO = '" + mod.getUsuario() + "'AND ID = '"+ id +"'";
             conectar = con.getConexion();
             st = conectar.createStatement();
             resultado = st.executeQuery(select);
