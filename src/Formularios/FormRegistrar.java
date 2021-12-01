@@ -445,10 +445,10 @@ public class FormRegistrar extends javax.swing.JFrame {
                 idError = 7;
             } else if (existe.next()) {
                 idError = 8;
-                if(comprobarUser.next()){
+                if (comprobarUser.next()) {
                     idError = 9;
                 }
-            }else if (update) {
+            } else if (update) {
                 idError = 9;
             }
 
@@ -573,6 +573,7 @@ public class FormRegistrar extends javax.swing.JFrame {
         }
         return resultado;
     }
+
     //metodo para comprobar si el nombre de usuario pertenece al mismo id
     public ResultSet validar(int id, String usuario) {
         //setiando las usuario en mi clase modelo
@@ -580,7 +581,7 @@ public class FormRegistrar extends javax.swing.JFrame {
         try {
             //realizando la query
             String select = "SELECT USUARIO FROM USUARIOS "
-                    + "WHERE USUARIO = '" + mod.getUsuario() + "'AND ID = '"+ id +"'";
+                    + "WHERE USUARIO = '" + mod.getUsuario() + "'AND ID = '" + id + "'";
             conectar = con.getConexion();
             st = conectar.createStatement();
             resultado = st.executeQuery(select);
